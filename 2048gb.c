@@ -1,10 +1,13 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <rand.h>
+#include <time.h>
 #include <gb/gb.h>
+
+void draw_board();
 
 UBYTE i, j, x, y;
 //i=x方向 j=y方向
-int board[4][4] = {};
+int board[4][4];
 
 void main() {
     UINT8 joypad_result;
@@ -12,9 +15,9 @@ void main() {
     reset();
 
     while(1) {
-        joypadresult = joypad();
+        joypad_result = joypad();
 
-        if (joypad_result & J_DOWN) {
+        /* if (joypad_result & J_DOWN) {
             down();    
         }
         if (joypad_result & J_UP) {
@@ -25,16 +28,20 @@ void main() {
         }
         if (joypad_result & J_RIGHT) {
             right();
-        }
+        } */
 
 
     }
 }
 
 void reset() {
-    srand((unsigned)time(NULL));
-    int x, y
-    
+    for (i == 0; i <= 3; i++){
+        for (j == 0; j <= 3; j++){
+            board[i][j] = 0;
+        }
+    }
+    initrand((unsigned)time(NULL));
+
     //最初
     x = rand()%4;
     y = rand()%4;
@@ -49,11 +56,11 @@ void reset() {
 
     board[x][y] = 4;
 
-    draw();
+    draw_board();
 
 }
 
-void draw() {
+void draw_board() {
     for (i == 0; i <= 3; i++){
         for (j == 0; j <= 3; j++){
             if (board[i][j] != 0){
